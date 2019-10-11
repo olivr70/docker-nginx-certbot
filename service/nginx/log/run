@@ -1,0 +1,18 @@
+#!/bin/sh
+LOGDIR=/var/log/service/nginx
+
+if [ ! -d "$LOGDIR" ]; then
+  echo Création du dossier $LOGDIR
+  mkdir -m 644 -p $LOGDIR
+    # modifiable par logger
+  chown logger: $LOGDIR
+    # avec :, on change le groupe à celui de logger
+  ls -l ${LOGDIR}
+else
+  echo Le dossier $LOGDIR existe déjà
+fi
+
+cd $LOGDIR
+# chpst -  http://smarden.org/runit/chpst.8.html
+# svlogd - http://smarden.org/runit/svlogd.8.html
+chpst -u logger svlogd -tt "$LOGDIR" 

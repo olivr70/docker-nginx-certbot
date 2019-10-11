@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Will start nginx"
+# run nginx as nginx user
+# runuser -l nginx -c "nginx" >> /var/log/nginx.sh 2>&1 
+# runuser -l nginx -c "nginx"
+
+# nginx
+# -g (global directive) "";
+exec /usr/sbin/nginx -g "daemon off;"
+echo "nginx has stopped"
